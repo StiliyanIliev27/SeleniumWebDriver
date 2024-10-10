@@ -18,10 +18,14 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 6.0.x
+    - name: Install Chrome
+      run:
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
     - name: Install dependencies
       run: dotnet restore SeleniumBasicExercise.sln
     - name: Build
-      run: dotnet build SeleniumBasicExercise.sln --no-restore
+      run: dotnet build SeleniumBasicExercise.sln
       
     - name: Run TestProject1 tests
       env:
