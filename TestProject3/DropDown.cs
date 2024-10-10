@@ -30,6 +30,13 @@ namespace TestProject3
             // Add implicit wait
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
+        
+        [TearDown]
+        public void TearDown()
+        {
+            driver.Quit();
+            driver.Dispose();
+        }
 
         [Test]
         public void TestSelectFromDropDown()

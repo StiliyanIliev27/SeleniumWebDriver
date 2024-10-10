@@ -29,6 +29,13 @@ namespace TestProject2
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            driver.Quit();
+            driver.Dispose();
+        }
+
         [Test]
         public void TestExtractProductInformation()
         {
@@ -67,14 +74,6 @@ namespace TestProject2
             // Verify the file was created and has content
             Assert.That(File.Exists(path), Is.True, "CSV file was not created");
             Assert.That(new FileInfo(path).Length, Is.GreaterThan(0), "CSV file is empty");
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            // Quit the driver
-            driver.Quit();
-            driver.Dispose();
         }
     }
 }
